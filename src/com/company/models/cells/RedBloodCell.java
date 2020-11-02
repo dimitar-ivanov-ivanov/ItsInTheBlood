@@ -18,4 +18,9 @@ public class RedBloodCell extends BloodCell {
         }
         this.velocity = velocity;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " | Velocity " + velocity;
+    }
 }

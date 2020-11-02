@@ -4,15 +4,15 @@ import com.company.constants.InputDataRestrictions;
 import com.company.exceptions.dimensionExceptions.InvalidColumnException;
 import com.company.exceptions.InvalidHealthException;
 import com.company.exceptions.dimensionExceptions.InvalidRowException;
+import com.company.interfaces.Cellular;
 import com.company.validators.NumberValidator;
 
-
-public abstract class Cell extends Identifiable {
+public abstract class Cell extends Identifiable implements Cellular {
     private int health;
     private int positionRow;
     private int positionCol;
 
-    public Cell(String id, int health, int positionRow, int positionCol) {
+    protected Cell(String id, int health, int positionRow, int positionCol) {
         super(id);
         setHealth(health);
         setPositionRow(positionRow);
@@ -42,7 +42,18 @@ public abstract class Cell extends Identifiable {
     }
 
     @Override
+    public int getPositionRow() {
+        return positionRow;
+    }
+
+    @Override
+    public int getPositionCol() {
+        return positionCol;
+    }
+
+    @Override
     public String toString() {
-        return "Health " + health;
+        return "------Cell " + getId() + "[" + getPositionRow() + "," + getPositionCol() + "]\n" +
+                "--------Health: " + health;
     }
 }

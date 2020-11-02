@@ -18,4 +18,9 @@ public class WhiteBloodCell extends BloodCell {
         }
         this.size = size;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " | Size " + size;
+    }
 }

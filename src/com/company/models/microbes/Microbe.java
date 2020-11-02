@@ -19,4 +19,9 @@ public abstract class Microbe extends Cell {
         }
         this.virulence = virulence;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " | Virulence " + virulence;
+    }
 }

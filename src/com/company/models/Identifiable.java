@@ -8,8 +8,12 @@ public abstract class Identifiable {
 
     private String id;
 
-    public Identifiable(String id) {
+    protected Identifiable(String id) {
         this.id = id;
+    }
+
+    protected String getId() {
+        return id;
     }
 
     private void setId(String id) {
