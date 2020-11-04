@@ -1,6 +1,6 @@
 package com.company.interfaces;
 
-public interface Cellular {
+public interface Cellular extends Identifiable {
 
     int getPositionRow();
 

@@ -1,6 +1,6 @@
 package com.company.interfaces;
 
-public interface Clusterable {
+public interface Clusterable extends Identifiable {
 
     void addCell(Cellular cell);
 }

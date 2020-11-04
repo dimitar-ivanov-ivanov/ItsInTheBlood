@@ -1,14 +1,17 @@
 package com.company.interfaces;
 
+import com.company.models.Cell;
+import com.company.models.Cluster;
+
 public interface HealthManager {
 
     String checkCondition(String organismName);
 
-    String createOrganism(String name);
+    String createOrganism(Organic organism);
 
-    String addCluster(String organismName, String id, int rows, int cols);
+    String addCluster(Clusterable clusterable, String organismName);
 
-    String addCell(String organismName, String clusterId, String cellType, String cellId, int health, int positionRow, int positionCol, int additionalProperty);
+    String addCell(Cellular cell, String organismName, String clusterId);
 
-    String activateCluster(String organismName);
+    String activateCluster(Cluster cluster);
 }

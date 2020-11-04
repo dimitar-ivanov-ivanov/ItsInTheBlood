@@ -1,7 +1,7 @@
 package com.company.models.cells;
 
 import com.company.constants.InputDataRestrictions;
-import com.company.exceptions.InvalidSizeException;
+import com.company.exceptions.fieldsExceptions.InvalidSizeException;
 import com.company.validators.NumberValidator;
 
 public class WhiteBloodCell extends BloodCell {

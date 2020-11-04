@@ -1,9 +1,11 @@
-package com.company.core.Commands;
+package com.company.core.commands;
 
-public abstract class Command {
+import com.company.interfaces.Executable;
+
+public abstract class Command implements Executable {
     String[] data;
 
-    protected Command(String[] data) {
+    public Command(String[] data) {
         this.data = data;
     }
 

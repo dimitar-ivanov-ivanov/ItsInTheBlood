@@ -1,21 +1,26 @@
 package com.company.models;
 
 import com.company.constants.InputDataRestrictions;
-import com.company.exceptions.dimensionExceptions.InvalidColumnException;
-import com.company.exceptions.dimensionExceptions.InvalidRowException;
+import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidColumnException;
+import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidRowException;
+import com.company.exceptions.modelsExceptions.AlreadyExistsException;
 import com.company.interfaces.Cellular;
 import com.company.interfaces.Clusterable;
+import com.company.messages.ExceptionMessages;
+import com.company.messages.OutputMessages;
 import com.company.validators.NumberValidator;
 
-public class Cluster extends Identifiable implements Clusterable {
+public class Cluster extends IdentifiableImpl implements Clusterable {
     private int rows;
     private int cols;
+    private int cellsCount;
     private Cellular[][] cells;
 
     public Cluster(String id, int rows, int cols) {
         super(id);
         setRows(rows);
         setCols(cols);
+        this.cellsCount = 0;
         this.cells = new Cell[rows][cols];
     }
 
@@ -34,15 +39,23 @@ public class Cluster extends Identifiable implements Clusterable {
         this.cols = cols;
     }
 
-
     @Override
     public void addCell(Cellular cell) {
-        this.cells[cell.getPositionRow()][cell.getPositionCol()] = cell;
+        int row = cell.getPositionRow();
+        int col = cell.getPositionCol();
+
+        if (cells[row][col] == null) {
+            cells[row][col] = cell;
+            cellsCount++;
+        } else {
+            throw new AlreadyExistsException(String.format(ExceptionMessages.ALREADY_EXISTS_FAIL, "Cell", cell.getId()));
+        }
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
+        builder.append("--Cells: " + cellsCount + "\n");
         builder.append("----Cluster " + getId() + "\n");
 
         for (int i = 0; i < rows; i++) {
@@ -52,9 +65,6 @@ public class Cluster extends Identifiable implements Clusterable {
                 }
             }
         }
-
-        builder.delete(builder.length() - 2, builder.length());
-
         return builder.toString();
     }
 }

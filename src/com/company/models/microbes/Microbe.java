@@ -1,7 +1,7 @@
 package com.company.models.microbes;
 
 import com.company.constants.InputDataRestrictions;
-import com.company.exceptions.InvalidVirulenceException;
+import com.company.exceptions.fieldsExceptions.InvalidVirulenceException;
 import com.company.models.Cell;
 import com.company.validators.NumberValidator;
 

@@ -1,13 +1,13 @@
 package com.company.models;
 
 import com.company.constants.InputDataRestrictions;
-import com.company.exceptions.dimensionExceptions.InvalidColumnException;
-import com.company.exceptions.InvalidHealthException;
-import com.company.exceptions.dimensionExceptions.InvalidRowException;
+import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidColumnException;
+import com.company.exceptions.fieldsExceptions.InvalidHealthException;
+import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidRowException;
 import com.company.interfaces.Cellular;
 import com.company.validators.NumberValidator;
 
-public abstract class Cell extends Identifiable implements Cellular {
+public abstract class Cell extends IdentifiableImpl implements Cellular {
     private int health;
     private int positionRow;
     private int positionCol;

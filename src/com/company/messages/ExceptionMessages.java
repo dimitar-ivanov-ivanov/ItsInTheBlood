@@ -16,4 +16,9 @@ public class ExceptionMessages {
 
     public static final String INVALID_ORGANISM_NAME_MESSAGE = "Invalid organism name! Should start with capital letter and continue with lowercase letters";
 
+    public static final String ALREADY_EXISTS_FAIL = "%s %s already exists";
+
+    public static final String MISSING_FAIL = "%s %s doesn't exist";
+
 }
+

@@ -1,4 +1,4 @@
-package com.company.core.Commands;
+package com.company.core.commands;
 
 public class ActivateClusterCommand {
 }
