@@ -2,7 +2,7 @@ package com.company.core.commands;
 
 import com.company.core.factories.CellFactory;
 import com.company.interfaces.*;
-import com.company.validators.TypeValidator;
+import com.company.common.TypeValidator;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -13,10 +13,10 @@ public class CommandInterpreterImpl implements CommandInterpreter {
 
     private HealthManager manager;
     private CellularFactory cellFactory;
-    private ClusterableFactory clusterableFactory;
+    private ClustercentricFactory clusterableFactory;
     private OrganicFactory organicFactory;
 
-    public CommandInterpreterImpl(HealthManager manager, CellFactory cellFactory, ClusterableFactory clusterableFactory, OrganicFactory organicFactory) {
+    public CommandInterpreterImpl(HealthManager manager, CellFactory cellFactory, ClustercentricFactory clusterableFactory, OrganicFactory organicFactory) {
         this.manager = manager;
         this.cellFactory = cellFactory;
         this.clusterableFactory = clusterableFactory;
@@ -63,7 +63,7 @@ public class CommandInterpreterImpl implements CommandInterpreter {
         boolean injectedField = false;
 
         for (Field currentField : currentClassFields) {
-            if (TypeValidator.equalFieldTypes(fieldToInject, currentField) &&
+            if (TypeValidator.checkIfFieldTypesAreEqual(fieldToInject, currentField) &&
                     tryToInjectField(executable, fieldToInject, currentField)) {
                 break;
             }

@@ -1,6 +1,5 @@
 package com.company.interfaces;
 
-import com.company.models.Cell;
 import com.company.models.Cluster;
 
 public interface HealthManager {
@@ -9,9 +8,9 @@ public interface HealthManager {
 
     String createOrganism(Organic organism);
 
-    String addCluster(Clusterable clusterable, String organismName);
+    String addCluster(Clustecentric clusterable, String organismName);
 
-    String addCell(Cellular cell, String organismName, String clusterId);
+    String addCellToCluster(Cellular cell, String organismName, String clusterId);
 
     String activateCluster(Cluster cluster);
 }

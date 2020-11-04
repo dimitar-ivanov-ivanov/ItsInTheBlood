@@ -32,6 +32,6 @@ public class AddCellCommand extends Command {
 
         Cellular cell = cellFactory.createCell(cellType, cellId, health, positionRow, positionCol, additionalProperty);
 
-        return manager.addCell(cell, organismName, clusterId);
+        return manager.addCellToCluster(cell, organismName, clusterId);
     }
 }

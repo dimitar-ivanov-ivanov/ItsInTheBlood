@@ -2,7 +2,7 @@ package com.company.models.cells;
 
 import com.company.constants.InputDataRestrictions;
 import com.company.exceptions.fieldsExceptions.InvalidSizeException;
-import com.company.validators.NumberValidator;
+import com.company.common.NumberValidator;
 
 public class WhiteBloodCell extends BloodCell {
     private int size;
@@ -13,7 +13,7 @@ public class WhiteBloodCell extends BloodCell {
     }
 
     private void setSize(int size) {
-        if (NumberValidator.notInRangeExclusive(size, InputDataRestrictions.MIN_SIZE, InputDataRestrictions.MAX_SIZE)) {
+        if (NumberValidator.checkNumberNotInRangeExclusive(size, InputDataRestrictions.MIN_SIZE, InputDataRestrictions.MAX_SIZE)) {
             throw new InvalidSizeException();
         }
         this.size = size;

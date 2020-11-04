@@ -5,7 +5,7 @@ import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidColumn
 import com.company.exceptions.fieldsExceptions.InvalidHealthException;
 import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidRowException;
 import com.company.interfaces.Cellular;
-import com.company.validators.NumberValidator;
+import com.company.common.NumberValidator;
 
 public abstract class Cell extends IdentifiableImpl implements Cellular {
     private int health;
@@ -20,14 +20,16 @@ public abstract class Cell extends IdentifiableImpl implements Cellular {
     }
 
     private void setHealth(int health) {
-        if (NumberValidator.notInRangeExclusive(health, InputDataRestrictions.MIN_HEALTH, InputDataRestrictions.MAX_HEALTH)) {
+        if (NumberValidator.checkNumberNotInRangeExclusive
+                (health, InputDataRestrictions.MIN_HEALTH, InputDataRestrictions.MAX_HEALTH)) {
             throw new InvalidHealthException();
         }
         this.health = health;
     }
 
     private void setPositionRow(int positionRow) {
-        if (NumberValidator.notInRangeExclusive(positionRow, InputDataRestrictions.MIN_DIMENSION, InputDataRestrictions.MAX_DIMENSION)) {
+        if (NumberValidator.checkNumberNotInRangeExclusive
+                (positionRow, InputDataRestrictions.MIN_DIMENSION, InputDataRestrictions.MAX_DIMENSION)) {
             throw new InvalidRowException();
         }
         this.positionRow = positionRow;
@@ -35,7 +37,8 @@ public abstract class Cell extends IdentifiableImpl implements Cellular {
     }
 
     private void setPositionCol(int positionCol) {
-        if (NumberValidator.notInRangeExclusive(positionCol, InputDataRestrictions.MIN_DIMENSION, InputDataRestrictions.MAX_DIMENSION)) {
+        if (NumberValidator.checkNumberNotInRangeExclusive
+                (positionCol, InputDataRestrictions.MIN_DIMENSION, InputDataRestrictions.MAX_DIMENSION)) {
             throw new InvalidColumnException();
         }
         this.positionCol = positionCol;

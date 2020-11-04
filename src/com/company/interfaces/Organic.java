@@ -4,7 +4,7 @@ public interface Organic {
 
     String getName();
 
-    String addCluster(Clusterable cluster);
+    String addCluster(Clustecentric cluster);
 
-    String addCell(String clusterId, Cellular cell);
+    String addCellToCluster(String clusterId, Cellular cell);
 }

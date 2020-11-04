@@ -1,5 +1,7 @@
 package com.company.core;
 
+import com.company.common.ExceptionWrapper;
+import com.company.exceptions.InputFailure;
 import com.company.exceptions.modelsExceptions.AlreadyExistsException;
 import com.company.exceptions.modelsExceptions.MissingException;
 import com.company.interfaces.CommandInterpreter;
@@ -33,27 +35,16 @@ public class Engine implements Runnable {
                 String[] data = input.split("\\s+");
                 String commandName = data[0];
 
-                if (commandName.equals("addCell")) {
+                if(data.length == 9 && data[8].equals("60")){
                     //System.out.println();
                 }
 
                 Executable exe = commandInterpreter.interpretCommand(data, commandName);
-                String result = exe.execute();
+                ExceptionWrapper wrapper = new ExceptionWrapper(exe);
+                String result = wrapper.runExecutable();
                 System.out.println(result);
-            } catch (AlreadyExistsException | MissingException e) {
-                System.out.println(e.getMessage());
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (ExecutionControl.NotImplementedException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            } catch (InputFailure failure) {
+                System.out.println(failure.getMessage());
             }
         }
     }

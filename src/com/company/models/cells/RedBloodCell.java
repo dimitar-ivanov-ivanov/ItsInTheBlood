@@ -2,7 +2,7 @@ package com.company.models.cells;
 
 import com.company.constants.InputDataRestrictions;
 import com.company.exceptions.fieldsExceptions.InvalidVelocityException;
-import com.company.validators.NumberValidator;
+import com.company.common.NumberValidator;
 
 public class RedBloodCell extends BloodCell {
     private int velocity;
@@ -13,7 +13,8 @@ public class RedBloodCell extends BloodCell {
     }
 
     private void setVelocity(int velocity) {
-        if (NumberValidator.notInRangeExclusive(velocity, InputDataRestrictions.MIN_VELOCITY, InputDataRestrictions.MAX_VELOCITY)) {
+        if (NumberValidator.checkNumberNotInRangeExclusive
+                (velocity, InputDataRestrictions.MIN_VELOCITY, InputDataRestrictions.MAX_VELOCITY)) {
             throw new InvalidVelocityException();
         }
         this.velocity = velocity;
