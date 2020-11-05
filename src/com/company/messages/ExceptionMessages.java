@@ -20,5 +20,6 @@ public class ExceptionMessages {
 
     public static final String MISSING_FAIL = "%s %s doesn't exist";
 
+    public static final String CLUSTER_ACTIVATION_FAILURE = "Cluster cannot be activated";
 }
 

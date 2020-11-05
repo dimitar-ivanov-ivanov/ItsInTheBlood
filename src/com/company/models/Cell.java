@@ -6,22 +6,30 @@ import com.company.exceptions.fieldsExceptions.InvalidHealthException;
 import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidRowException;
 import com.company.interfaces.Cellular;
 import com.company.common.NumberValidator;
+import com.company.models.cells.BloodCell;
+import com.company.models.cells.RedBloodCell;
+import com.company.models.microbes.Microbe;
 
 public abstract class Cell extends IdentifiableImpl implements Cellular {
     private int health;
     private int positionRow;
     private int positionCol;
+    private boolean fightMode;
 
     protected Cell(String id, int health, int positionRow, int positionCol) {
         super(id);
-        setHealth(health);
+        setHealth(health, InputDataRestrictions.MIN_HEALTH, InputDataRestrictions.MAX_HEALTH);
         setPositionRow(positionRow);
         setPositionCol(positionCol);
+        setFightMode(false);
     }
 
-    private void setHealth(int health) {
-        if (NumberValidator.checkNumberNotInRangeExclusive
-                (health, InputDataRestrictions.MIN_HEALTH, InputDataRestrictions.MAX_HEALTH)) {
+    protected void setFightMode(boolean fightMode) {
+        this.fightMode = fightMode;
+    }
+
+    protected void setHealth(int health, int lowerLimit, int upperLimit) {
+        if (NumberValidator.checkNumberNotInRangeExclusive(health, lowerLimit, upperLimit)) {
             throw new InvalidHealthException();
         }
         this.health = health;
@@ -44,6 +52,12 @@ public abstract class Cell extends IdentifiableImpl implements Cellular {
         this.positionCol = positionCol;
     }
 
+    public abstract int getEnergy();
+
+    public int getHealth() {
+        return health;
+    }
+
     @Override
     public int getPositionRow() {
         return positionRow;
@@ -52,6 +66,43 @@ public abstract class Cell extends IdentifiableImpl implements Cellular {
     @Override
     public int getPositionCol() {
         return positionCol;
+    }
+
+    @Override
+    public void fight(Cellular other) {
+        moveCell(other);
+        if (this instanceof BloodCell && !fightMode) {
+            assimilateOtherCell((Cell) other);
+        } else if (this instanceof Microbe || (this instanceof BloodCell && fightMode)) {
+            attackOtherCell((Cell) other);
+            //for continuous fighting
+            initiateFighting((Cell) other);
+        }
+    }
+
+    private void moveCell(Cellular other) {
+        setPositionRow(other.getPositionRow());
+        setPositionCol(other.getPositionCol());
+    }
+
+    private void assimilateOtherCell(Cell other) {
+        int newHealthCurrent = this.getHealth() + other.getHealth();
+        this.setHealth(newHealthCurrent, InputDataRestrictions.MIN_HEALTH, InputDataRestrictions.MAX_HEALTH);
+
+        //the other cell dies
+        int newHealthOther = 0;
+        other.setHealth(newHealthOther, -1, InputDataRestrictions.MAX_HEALTH);
+    }
+
+    private void attackOtherCell(Cell other) {
+        int newHealthOther = other.getHealth() - this.getEnergy();
+        //the current energy may be very high so we give the lower limit to the minus energy because it may be negative
+        other.setHealth(newHealthOther, -this.getEnergy(), InputDataRestrictions.MAX_HEALTH);
+    }
+
+    private void initiateFighting(Cell other) {
+        this.setFightMode(true);
+        other.setFightMode(true);
     }
 
     @Override

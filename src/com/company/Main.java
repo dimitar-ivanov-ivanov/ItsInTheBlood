@@ -7,6 +7,8 @@ import com.company.core.factories.ClusterFactory;
 import com.company.core.factories.OrganismFactory;
 import com.company.data.HealthManagerImpl;
 import com.company.interfaces.*;
+import com.company.models.cells.BloodCell;
+import com.company.models.cells.RedBloodCell;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.lang.Runnable;

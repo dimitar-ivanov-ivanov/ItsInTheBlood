@@ -1,7 +1,7 @@
 package com.company.core.commands;
 
 import com.company.annotations.Inject;
-import com.company.interfaces.Clustecentric;
+import com.company.interfaces.Clustercentric;
 import com.company.interfaces.ClustercentricFactory;
 import com.company.interfaces.HealthManager;
 
@@ -23,7 +23,7 @@ public class AddClusterCommand extends Command {
         int rows = Integer.parseInt(data[3]);
         int cols = Integer.parseInt(data[4]);
 
-        Clustecentric cluster = clusterableFactory.createCluster(id, rows, cols);
+        Clustercentric cluster = clusterableFactory.createCluster(id, rows, cols);
         return manager.addCluster(cluster, organismName);
     }
 }

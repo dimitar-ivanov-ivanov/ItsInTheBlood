@@ -1,6 +1,6 @@
 package com.company.common;
 
-import com.company.exceptions.InputFailure;
+import com.company.exceptions.InputFailureException;
 import com.company.exceptions.modelsExceptions.AlreadyExistsException;
 import com.company.exceptions.modelsExceptions.MissingException;
 import com.company.interfaces.Executable;
@@ -28,7 +28,7 @@ public class ExceptionWrapper {
                 ClassNotFoundException |
                 AlreadyExistsException |
                 MissingException e) {
-            throw new InputFailure(e.getMessage());
+            throw new InputFailureException(e.getMessage());
         }
     }
 }

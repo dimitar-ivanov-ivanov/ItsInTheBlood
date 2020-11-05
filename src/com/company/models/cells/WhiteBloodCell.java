@@ -20,7 +20,12 @@ public class WhiteBloodCell extends BloodCell {
     }
 
     @Override
+    public int getEnergy() {
+        return (size + getHealth()) * 2;
+    }
+
+    @Override
     public String toString() {
-        return super.toString() + " | Size " + size;
+        return super.toString() + " | Size " + size + " | Energy " + getEnergy();
     }
 }

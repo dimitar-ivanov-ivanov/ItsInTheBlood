@@ -3,12 +3,11 @@ package com.company.data;
 import com.company.exceptions.modelsExceptions.AlreadyExistsException;
 import com.company.exceptions.modelsExceptions.MissingException;
 import com.company.interfaces.Cellular;
-import com.company.interfaces.Clustecentric;
+import com.company.interfaces.Clustercentric;
 import com.company.interfaces.HealthManager;
 import com.company.interfaces.Organic;
 import com.company.messages.ExceptionMessages;
 import com.company.messages.OutputMessages;
-import com.company.models.Cluster;
 
 
 import java.util.HashMap;
@@ -41,7 +40,7 @@ public class HealthManagerImpl implements HealthManager {
     }
 
     @Override
-    public String addCluster(Clustecentric clusterable, String organismName) {
+    public String addCluster(Clustercentric clusterable, String organismName) {
         if (!allOrganism.containsKey(organismName)) {
             throw new MissingException(String.format(ExceptionMessages.MISSING_FAIL, "Organism", organismName));
         }
@@ -60,7 +59,11 @@ public class HealthManagerImpl implements HealthManager {
     }
 
     @Override
-    public String activateCluster(Cluster cluster) {
-        return null;
+    public String activateCluster(String organismName) {
+        if (!allOrganism.containsKey(organismName)) {
+            throw new MissingException(String.format(ExceptionMessages.MISSING_FAIL, "Organism", organismName));
+        }
+
+        return allOrganism.get(organismName).activateCluster();
     }
 }

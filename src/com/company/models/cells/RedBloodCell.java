@@ -21,7 +21,12 @@ public class RedBloodCell extends BloodCell {
     }
 
     @Override
+    public int getEnergy() {
+        return velocity + getHealth();
+    }
+
+    @Override
     public String toString() {
-        return super.toString() + " | Velocity " + velocity;
+        return super.toString() + " | Velocity " + velocity + " | Energy " + getEnergy();
     }
 }

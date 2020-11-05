@@ -22,7 +22,12 @@ public abstract class Microbe extends Cell {
     }
 
     @Override
+    public int getEnergy() {
+        return getHealth() + virulence;
+    }
+
+    @Override
     public String toString() {
-        return super.toString() + " | Virulence " + virulence;
+        return super.toString() + " | Virulence " + virulence + " | Energy " + getEnergy();
     }
 }

@@ -1,6 +1,6 @@
 package com.company.core.factories;
 
-import com.company.interfaces.Clustecentric;
+import com.company.interfaces.Clustercentric;
 import com.company.interfaces.ClustercentricFactory;
 import com.company.models.Cluster;
 
@@ -9,7 +9,7 @@ public class ClusterFactory implements ClustercentricFactory {
 
 
     @Override
-    public Clustecentric createCluster(String clusterId, int rows, int cols) {
+    public Clustercentric createCluster(String clusterId, int rows, int cols) {
         return new Cluster(clusterId, rows, cols);
     }
 }

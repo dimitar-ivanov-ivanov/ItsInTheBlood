@@ -3,7 +3,7 @@ package com.company.constants;
 public class InputDataRestrictions {
 
     public static final int MIN_HEALTH = 1;
-    public static final int MAX_HEALTH = 100;
+    public static final int MAX_HEALTH = 500;
 
     public static final int MIN_DIMENSION = 0;
     public static final int MAX_DIMENSION = 25;

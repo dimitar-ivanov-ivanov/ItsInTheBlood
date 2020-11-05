@@ -10,11 +10,13 @@ import java.lang.reflect.InvocationTargetException;
 
 public class CellFactory implements CellularFactory {
     private final String CELLS_PACKAGE_NAME =
-            "com.company.models.cells.";
+            "com.company.models.";
 
     @Override
     public Cellular createCell(String cellType, String cellId, int health, int positionRow, int positionCol, int additionalProperty) throws NoSuchMethodException, ClassNotFoundException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        String fullName = CELLS_PACKAGE_NAME + cellType;
+        String folderName = cellType.endsWith("Cell") ? "cells." : "microbes.";
+
+        String fullName = CELLS_PACKAGE_NAME + folderName + cellType;
         Class<?> reflection = Class.forName(fullName);
         Constructor<?> constructor = reflection.getDeclaredConstructor(String.class, int.class, int.class, int.class, int.class);
         constructor.setAccessible(true);
