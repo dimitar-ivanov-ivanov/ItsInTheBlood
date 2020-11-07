@@ -1,11 +1,11 @@
 package com.company.models;
 
+import com.company.common.NumberValidator;
 import com.company.constants.InputDataRestrictions;
 import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidColumnException;
 import com.company.exceptions.fieldsExceptions.InvalidHealthException;
 import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidRowException;
 import com.company.models.interfaces.Cellular;
-import com.company.common.NumberValidator;
 import com.company.models.cells.BloodCell;
 import com.company.models.microbes.Microbe;
 
@@ -17,7 +17,6 @@ import com.company.models.microbes.Microbe;
  * @version 1.4
  * @see IdentifiableImpl
  * @see Cellular
- * @since 06.11.2020
  */
 public abstract class Cell extends IdentifiableImpl implements Cellular {
 
@@ -44,7 +43,7 @@ public abstract class Cell extends IdentifiableImpl implements Cellular {
      * Protected constructor
      *
      * @param id          the id of the cell which is handled by the class IdentifiableImpl
-     * @param health      the health of the cell which can range from 0 to 500
+     * @param health      the health of the cell
      * @param positionRow the row of the cell in the cluster
      * @param positionCol the column of the cell in the cluster
      * @see IdentifiableImpl
@@ -92,6 +91,8 @@ public abstract class Cell extends IdentifiableImpl implements Cellular {
      * @throws InvalidRowException if the row is not in the correct range
      * @see NumberValidator#checkNumberNotInRangeExclusive(double, double, double)
      * @see InvalidRowException#getMessage()
+     * @see InputDataRestrictions#MIN_DIMENSION
+     * @see InputDataRestrictions#MAX_DIMENSION
      */
     private void setPositionRow(int positionRow) {
         if (NumberValidator.checkNumberNotInRangeExclusive
@@ -109,6 +110,8 @@ public abstract class Cell extends IdentifiableImpl implements Cellular {
      * @throws InvalidColumnException if the column is not in the correct range
      * @see NumberValidator#checkNumberNotInRangeExclusive(double, double, double)
      * @see InvalidColumnException#getMessage()
+     * @see InputDataRestrictions#MIN_DIMENSION
+     * @see InputDataRestrictions#MAX_DIMENSION
      */
     private void setPositionCol(int positionCol) {
         if (NumberValidator.checkNumberNotInRangeExclusive
@@ -121,14 +124,16 @@ public abstract class Cell extends IdentifiableImpl implements Cellular {
     /**
      * Get the energy of the cell
      *
-     * @return the energy of the cell
+     * @return the energy of the cell which on a base level is equal to the health
      */
-    public abstract int getEnergy();
+    public int getEnergy() {
+        return this.getHealth();
+    }
 
     /**
      * Get the health of the cell
      *
-     * @return
+     * @return health of the cell
      */
     public int getHealth() {
         return health;
@@ -157,11 +162,11 @@ public abstract class Cell extends IdentifiableImpl implements Cellular {
     /**
      * Before the fight, move the current cell to the position of the other cell in cluster
      * One of them is going to survive and if the current one survives it should take the place of the other cell
-     *
+     * <p>
      * If the current cell is a BloodCell it should assimilate all other cells
      * If the current cell is a Microbe it attacks every other cell
      * If the current cell is a BloodCell and has been attacked by a Microbe and survived, it fights back
-     *
+     * <p>
      * After the attack if the current cell is alive its fightMode becomes true and now it is able to fight back
      *
      * @param other the other cell which the current one is going to fight
@@ -226,7 +231,7 @@ public abstract class Cell extends IdentifiableImpl implements Cellular {
 
     @Override
     public String toString() {
-        return "------Cell " + getId() + "[" + getPositionRow() + "," + getPositionCol() + "]\n" +
+        return "------" + this.getClass().getSimpleName() + " " + getId() + "[" + getPositionRow() + "," + getPositionCol() + "]\n" +
                 "--------Health: " + health;
     }
 }

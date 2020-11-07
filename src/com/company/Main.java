@@ -9,18 +9,18 @@ import com.company.core.factories.interfaces.ClustercentricFactory;
 import com.company.core.factories.interfaces.OrganicFactory;
 import com.company.data.HealthManagerImpl;
 import com.company.data.interfaces.HealthManager;
-import jdk.jshell.spi.ExecutionControl;
+import com.company.models.microbes.Fungi;
+import com.company.models.microbes.Virus;
 
 import java.lang.Runnable;
-import java.lang.reflect.InvocationTargetException;
 
 public class Main {
 
-    public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InstantiationException, ExecutionControl.NotImplementedException, InvocationTargetException, ClassNotFoundException {
+    public static void main(String[] args) {
         solve();
     }
 
-    private static void solve() throws NoSuchMethodException, IllegalAccessException, InstantiationException, ExecutionControl.NotImplementedException, InvocationTargetException, ClassNotFoundException {
+    private static void solve() {
         HealthManager manager = new HealthManagerImpl();
 
         CellFactory cellFactory = new CellFactory();

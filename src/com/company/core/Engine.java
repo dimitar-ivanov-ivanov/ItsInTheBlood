@@ -31,7 +31,7 @@ public class Engine implements Runnable {
                 String[] data = input.split("\\s+");
                 String commandName = data[0];
 
-                if (commandName.equals("addCluster") && data[2].equals("B05")) {
+                if (commandName.equals("addCell") && data[3].equals("Fungi")) {
                     System.out.println();
                 }
 

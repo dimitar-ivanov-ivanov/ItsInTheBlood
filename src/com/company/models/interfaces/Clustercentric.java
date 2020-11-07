@@ -7,7 +7,6 @@ package com.company.models.interfaces;
  *
  * @author Dimitar Ivanov
  * @version 1.4
- * @since 06.11.2020
  * @see Identifiable
  */
 public interface Clustercentric extends Identifiable {

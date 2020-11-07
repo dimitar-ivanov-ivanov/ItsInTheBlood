@@ -2,9 +2,6 @@ package com.company.core.commands;
 
 import com.company.annotations.Inject;
 import com.company.data.interfaces.HealthManager;
-import jdk.jshell.spi.ExecutionControl;
-
-import java.lang.reflect.InvocationTargetException;
 
 public class ActivateClusterCommand extends Command {
 
@@ -16,7 +13,7 @@ public class ActivateClusterCommand extends Command {
     }
 
     @Override
-    public String execute() throws NoSuchMethodException, IllegalAccessException, InstantiationException, ExecutionControl.NotImplementedException, InvocationTargetException, ClassNotFoundException {
+    public String execute() {
         String organismName = data[1];
         return manager.activateCluster(organismName);
     }

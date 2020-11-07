@@ -1,6 +1,5 @@
 package com.company.exceptions.modelsExceptions;
 
-import com.company.messages.ExceptionMessages;
 
 public class AlreadyExistsException extends RuntimeException {
 

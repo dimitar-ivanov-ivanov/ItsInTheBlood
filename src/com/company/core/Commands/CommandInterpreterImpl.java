@@ -1,5 +1,6 @@
 package com.company.core.commands;
 
+import com.company.common.TypeValidator;
 import com.company.core.commands.interfaces.CommandInterpreter;
 import com.company.core.commands.interfaces.Executable;
 import com.company.core.factories.CellFactory;
@@ -7,7 +8,6 @@ import com.company.core.factories.interfaces.CellularFactory;
 import com.company.core.factories.interfaces.ClustercentricFactory;
 import com.company.core.factories.interfaces.OrganicFactory;
 import com.company.data.interfaces.HealthManager;
-import com.company.common.TypeValidator;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -16,10 +16,10 @@ import java.lang.reflect.InvocationTargetException;
 public class CommandInterpreterImpl implements CommandInterpreter {
     private static final String COMMANDS_PACKAGE_NAME = "com.company.core.commands.";
 
-    private HealthManager manager;
-    private CellularFactory cellFactory;
-    private ClustercentricFactory clusterableFactory;
-    private OrganicFactory organicFactory;
+    private final HealthManager manager;
+    private final CellularFactory cellFactory;
+    private final ClustercentricFactory clusterableFactory;
+    private final OrganicFactory organicFactory;
 
     public CommandInterpreterImpl(HealthManager manager, CellFactory cellFactory, ClustercentricFactory clusterableFactory, OrganicFactory organicFactory) {
         this.manager = manager;
