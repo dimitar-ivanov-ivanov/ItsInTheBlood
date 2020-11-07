@@ -1,6 +1,6 @@
 package com.company.core.commands;
 
-import com.company.interfaces.Executable;
+import com.company.core.commands.interfaces.Executable;
 
 public abstract class Command implements Executable {
     String[] data;

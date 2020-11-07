@@ -1,9 +1,9 @@
 package com.company.core.commands;
 
 import com.company.annotations.Inject;
-import com.company.interfaces.Cellular;
-import com.company.interfaces.CellularFactory;
-import com.company.interfaces.HealthManager;
+import com.company.models.interfaces.Cellular;
+import com.company.core.factories.interfaces.CellularFactory;
+import com.company.data.interfaces.HealthManager;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.lang.reflect.InvocationTargetException;

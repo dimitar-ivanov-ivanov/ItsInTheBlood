@@ -2,13 +2,12 @@ package com.company.data;
 
 import com.company.exceptions.modelsExceptions.AlreadyExistsException;
 import com.company.exceptions.modelsExceptions.MissingException;
-import com.company.interfaces.Cellular;
-import com.company.interfaces.Clustercentric;
-import com.company.interfaces.HealthManager;
-import com.company.interfaces.Organic;
+import com.company.models.interfaces.Cellular;
+import com.company.models.interfaces.Clustercentric;
+import com.company.data.interfaces.HealthManager;
+import com.company.models.interfaces.Organic;
 import com.company.messages.ExceptionMessages;
 import com.company.messages.OutputMessages;
-
 
 import java.util.HashMap;
 import java.util.Map;

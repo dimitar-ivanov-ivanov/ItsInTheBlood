@@ -1,7 +1,7 @@
 package com.company.core.factories;
 
-import com.company.interfaces.Clustercentric;
-import com.company.interfaces.ClustercentricFactory;
+import com.company.models.interfaces.Clustercentric;
+import com.company.core.factories.interfaces.ClustercentricFactory;
 import com.company.models.Cluster;
 
 public class ClusterFactory implements ClustercentricFactory {

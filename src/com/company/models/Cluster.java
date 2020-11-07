@@ -5,8 +5,8 @@ import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidColumn
 import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidDimensionException;
 import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidRowException;
 import com.company.exceptions.modelsExceptions.AlreadyExistsException;
-import com.company.interfaces.Cellular;
-import com.company.interfaces.Clustercentric;
+import com.company.models.interfaces.Cellular;
+import com.company.models.interfaces.Clustercentric;
 import com.company.messages.ExceptionMessages;
 import com.company.common.NumberValidator;
 

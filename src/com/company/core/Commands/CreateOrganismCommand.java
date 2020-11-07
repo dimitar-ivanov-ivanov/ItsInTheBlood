@@ -1,13 +1,9 @@
 package com.company.core.commands;
 
 import com.company.annotations.Inject;
-import com.company.interfaces.HealthManager;
-import com.company.interfaces.Organic;
-import com.company.interfaces.OrganicFactory;
-import com.company.models.Organism;
-import jdk.jshell.spi.ExecutionControl;
-
-import java.lang.reflect.InvocationTargetException;
+import com.company.data.interfaces.HealthManager;
+import com.company.models.interfaces.Organic;
+import com.company.core.factories.interfaces.OrganicFactory;
 
 public class CreateOrganismCommand extends Command {
 

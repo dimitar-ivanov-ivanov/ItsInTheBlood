@@ -1,9 +1,7 @@
 package com.company.core.factories;
 
-import com.company.interfaces.Cellular;
-import com.company.interfaces.CellularFactory;
-import com.company.models.Cell;
-import jdk.jshell.spi.ExecutionControl;
+import com.company.models.interfaces.Cellular;
+import com.company.core.factories.interfaces.CellularFactory;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

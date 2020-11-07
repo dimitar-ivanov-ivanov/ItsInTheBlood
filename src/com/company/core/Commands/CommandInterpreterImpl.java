@@ -1,7 +1,12 @@
 package com.company.core.commands;
 
+import com.company.core.commands.interfaces.CommandInterpreter;
+import com.company.core.commands.interfaces.Executable;
 import com.company.core.factories.CellFactory;
-import com.company.interfaces.*;
+import com.company.core.factories.interfaces.CellularFactory;
+import com.company.core.factories.interfaces.ClustercentricFactory;
+import com.company.core.factories.interfaces.OrganicFactory;
+import com.company.data.interfaces.HealthManager;
 import com.company.common.TypeValidator;
 
 import java.lang.reflect.Constructor;

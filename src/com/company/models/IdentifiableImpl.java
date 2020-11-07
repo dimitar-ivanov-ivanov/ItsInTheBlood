@@ -1,7 +1,7 @@
 package com.company.models;
 
 import com.company.exceptions.fieldsExceptions.InvalidIdException;
-import com.company.interfaces.Identifiable;
+import com.company.models.interfaces.Identifiable;
 import com.company.common.StringValidator;
 
 public abstract class IdentifiableImpl implements Identifiable {

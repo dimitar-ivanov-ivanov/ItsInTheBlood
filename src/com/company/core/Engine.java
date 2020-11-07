@@ -2,8 +2,8 @@ package com.company.core;
 
 import com.company.common.ExceptionWrapper;
 import com.company.exceptions.InputFailureException;
-import com.company.interfaces.CommandInterpreter;
-import com.company.interfaces.Executable;
+import com.company.core.commands.interfaces.CommandInterpreter;
+import com.company.core.commands.interfaces.Executable;
 import com.company.messages.OutputMessages;
 
 import java.util.Scanner;

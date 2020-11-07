@@ -1,11 +1,8 @@
 package com.company.core.factories;
 
-import com.company.interfaces.Organic;
-import com.company.interfaces.OrganicFactory;
+import com.company.models.interfaces.Organic;
+import com.company.core.factories.interfaces.OrganicFactory;
 import com.company.models.Organism;
-import jdk.jshell.spi.ExecutionControl;
-
-import java.lang.reflect.InvocationTargetException;
 
 public class OrganismFactory implements OrganicFactory {
     @Override

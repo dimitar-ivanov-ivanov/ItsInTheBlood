@@ -3,7 +3,7 @@ package com.company.common;
 import com.company.exceptions.InputFailureException;
 import com.company.exceptions.modelsExceptions.AlreadyExistsException;
 import com.company.exceptions.modelsExceptions.MissingException;
-import com.company.interfaces.Executable;
+import com.company.core.commands.interfaces.Executable;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.lang.reflect.InvocationTargetException;

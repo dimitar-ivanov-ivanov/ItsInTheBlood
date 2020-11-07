@@ -1,9 +1,9 @@
 package com.company.core.commands;
 
 import com.company.annotations.Inject;
-import com.company.interfaces.Clustercentric;
-import com.company.interfaces.ClustercentricFactory;
-import com.company.interfaces.HealthManager;
+import com.company.models.interfaces.Clustercentric;
+import com.company.core.factories.interfaces.ClustercentricFactory;
+import com.company.data.interfaces.HealthManager;
 
 public class AddClusterCommand extends Command {
 

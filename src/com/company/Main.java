@@ -5,10 +5,10 @@ import com.company.core.commands.CommandInterpreterImpl;
 import com.company.core.factories.CellFactory;
 import com.company.core.factories.ClusterFactory;
 import com.company.core.factories.OrganismFactory;
+import com.company.core.factories.interfaces.ClustercentricFactory;
+import com.company.core.factories.interfaces.OrganicFactory;
 import com.company.data.HealthManagerImpl;
-import com.company.interfaces.*;
-import com.company.models.cells.BloodCell;
-import com.company.models.cells.RedBloodCell;
+import com.company.data.interfaces.HealthManager;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.lang.Runnable;
