@@ -1,8 +1,6 @@
 # ItsInTheBlood
 <p>
-Console Program that simulates an attack from external forces such as viruses,bacteria and fungi on the organism.
-The organism consists of clusters filled with cells.
-The attack on the organism consists of cells fighting one another.
+Have you ever thought about why are you getting sick? When it comes to harmful agents, your body turns into a real battlefield. The healthier your body is, the faster you get better. Now you are going to simulate the battle against the some harmful microbes, trying to get you sick. You are armed with your blood cells, and some boosters, that make you stronger and healthier.
 </p>
 <p>
 The Program includes <b>OOP</b> and Design patterns such as 
