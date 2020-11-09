@@ -8,6 +8,13 @@ import jdk.jshell.spi.ExecutionControl;
 
 import java.lang.reflect.InvocationTargetException;
 
+/**
+ * The type Add cell command.
+ *
+ * @author Dimitar Ivanov
+ * @version 1.4
+ * @see Command
+ */
 public class AddCellCommand extends Command {
 
     @Inject
@@ -15,10 +22,28 @@ public class AddCellCommand extends Command {
     @Inject
     private CellularFactory cellFactory;
 
+    /**
+     * Instantiates a new Add cell command.
+     *
+     * @param data the data
+     */
     public AddCellCommand(String[] data) {
         super(data);
     }
 
+    /**
+     * Create cell from the injected factory and execute the addCellToCluster function of the injected manager
+     *
+     * @return a message to indicate successful execution
+     * @throws NoSuchMethodException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws ExecutionControl.NotImplementedException
+     * @throws InvocationTargetException
+     * @throws ClassNotFoundException
+     * @see CellularFactory#createCell(String, String, int, int, int, int)
+     * @see HealthManager#addCellToCluster(Cellular, String, String) (String)
+     */
     @Override
     public String execute() throws NoSuchMethodException, IllegalAccessException, InstantiationException, ExecutionControl.NotImplementedException, InvocationTargetException, ClassNotFoundException {
         String organismName = data[1];
