@@ -2,8 +2,8 @@ package com.company.models;
 
 import com.company.common.NumberValidator;
 import com.company.constants.InputDataRestrictions;
-import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidColumnException;
 import com.company.exceptions.fieldsExceptions.InvalidHealthException;
+import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidColumnException;
 import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidRowException;
 import com.company.models.interfaces.Cellular;
 import com.company.models.cells.BloodCell;

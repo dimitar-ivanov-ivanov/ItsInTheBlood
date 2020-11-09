@@ -1,7 +1,7 @@
 package com.company.models;
 
 import com.company.common.StringValidator;
-import com.company.exceptions.fieldsExceptions.InvalidNameException;
+import com.company.exceptions.InvalidNameException;
 import com.company.exceptions.modelsExceptions.AlreadyExistsException;
 import com.company.exceptions.modelsExceptions.ClusterActivationFailureException;
 import com.company.exceptions.modelsExceptions.MissingException;
