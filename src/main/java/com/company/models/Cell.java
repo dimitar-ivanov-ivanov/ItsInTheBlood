@@ -6,8 +6,6 @@ import com.company.exceptions.fieldsExceptions.InvalidHealthException;
 import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidColumnException;
 import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidRowException;
 import com.company.models.interfaces.Cellular;
-import com.company.models.cells.BloodCell;
-import com.company.models.microbes.Microbe;
 
 /**
  * Represents the Cell
@@ -61,7 +59,7 @@ public abstract class Cell extends IdentifiableImpl implements Cellular {
      *
      * @param fightMode represent whether the cell has been fighting another cell
      */
-    protected void setFightMode(boolean fightMode) {
+    private void setFightMode(boolean fightMode) {
         this.fightMode = fightMode;
     }
 
@@ -135,8 +133,46 @@ public abstract class Cell extends IdentifiableImpl implements Cellular {
      *
      * @return health of the cell
      */
+    @Override
     public int getHealth() {
         return health;
+    }
+
+    /**
+     * Check if the cell is alive
+     *
+     * @return a condition verifying whether the cell is alive
+     */
+    @Override
+    public boolean isAlive() {
+        return getHealth() > 0;
+    }
+
+    /**
+     * Receive energy damage after a fight
+     *
+     * @param newHealth the new health for the cell after the fight
+     */
+    @Override
+    public void receiveEnergyDamage(int newHealth) {
+        setHealth(newHealth, -InputDataRestrictions.MAX_HEALTH, InputDataRestrictions.MAX_HEALTH);
+    }
+
+    /**
+     * Get fightMode of the cell
+     *
+     * @return fightMode of the cell
+     */
+    protected boolean getFightMode() {
+        return fightMode;
+    }
+
+    /**
+     * Cell starts fighting
+     */
+    @Override
+    public void initiateFighting() {
+        setFightMode(true);
     }
 
     /**
@@ -174,14 +210,22 @@ public abstract class Cell extends IdentifiableImpl implements Cellular {
     @Override
     public void fight(Cellular other) {
         moveCell(other);
-        if (this instanceof BloodCell && !fightMode) {
-            assimilateOtherCell((Cell) other);
-        } else if (this instanceof Microbe || (this instanceof BloodCell && fightMode)) {
-            attackOtherCell((Cell) other);
-            //for continuous fighting
-            initiateFighting((Cell) other);
+        int otherRemainingHealth = this.attackOtherCell(other);
+        other.receiveEnergyDamage(otherRemainingHealth);
+
+        if (other.isAlive()) {
+            this.initiateFighting();
+            other.initiateFighting();
         }
     }
+
+    /**
+     * Attacks the other cell
+     *
+     * @param other the cell that is going to be attacked
+     * @return the remaining health of the other cell after the fight
+     */
+    protected abstract int attackOtherCell(Cellular other);
 
     /**
      * Set the position in the cluster of the current cell to the position of the other cell
@@ -191,42 +235,6 @@ public abstract class Cell extends IdentifiableImpl implements Cellular {
     private void moveCell(Cellular other) {
         setPositionRow(other.getPositionRow());
         setPositionCol(other.getPositionCol());
-    }
-
-    /**
-     * Assimilate the other cell by taking all its health and set its health to negative value
-     *
-     * @param other the cell that the current one is fighting
-     */
-    private void assimilateOtherCell(Cell other) {
-        int newHealthCurrent = this.getHealth() + other.getHealth();
-        this.setHealth(newHealthCurrent, InputDataRestrictions.MIN_HEALTH, InputDataRestrictions.MAX_HEALTH);
-
-        //the other cell dies
-        int newHealthOther = 0;
-        other.setHealth(newHealthOther, -1, InputDataRestrictions.MAX_HEALTH);
-    }
-
-    /**
-     * Attack the other cell by damaging its health with the current cells energy
-     *
-     * @param other the cell that the current one is fighting
-     */
-    private void attackOtherCell(Cell other) {
-        int newHealthOther = other.getHealth() - this.getEnergy();
-
-        //the current energy may be very high so we give the lower limit to the minus energy because it may be negative
-        other.setHealth(newHealthOther, -this.getEnergy(), InputDataRestrictions.MAX_HEALTH);
-    }
-
-    /**
-     * Set both cells fightModes to true
-     *
-     * @param other the cell that the current one is fighting
-     */
-    private void initiateFighting(Cell other) {
-        this.setFightMode(true);
-        other.setFightMode(true);
     }
 
     @Override

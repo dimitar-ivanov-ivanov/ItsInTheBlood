@@ -4,6 +4,7 @@ import com.company.common.NumberValidator;
 import com.company.constants.InputDataRestrictions;
 import com.company.exceptions.fieldsExceptions.InvalidVirulenceException;
 import com.company.models.Cell;
+import com.company.models.interfaces.Cellular;
 
 /**
  * Represents the Microbe.
@@ -55,6 +56,11 @@ public abstract class Microbe extends Cell {
     @Override
     public int getEnergy() {
         return super.getEnergy() + virulence;
+    }
+
+    @Override
+    protected int attackOtherCell(Cellular other) {
+        return other.getHealth() - getEnergy();
     }
 
     @Override

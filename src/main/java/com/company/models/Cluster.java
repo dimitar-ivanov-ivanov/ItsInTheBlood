@@ -168,9 +168,9 @@ public class Cluster extends IdentifiableImpl implements Clustercentric {
             fightCell(firstCell, nextCell);
             removeCell(nextCell);
 
-            if (isCellDead(nextCell)) {
+            if (!nextCell.isAlive()) {
                 cells.get(nextCell.getPositionRow()).put(nextCell.getPositionCol(), firstCell);
-            } else if (isCellDead(firstCell)) {
+            } else if (!firstCell.isAlive()) {
                 firstCell = nextCell;
             }
         }
@@ -190,10 +190,9 @@ public class Cluster extends IdentifiableImpl implements Clustercentric {
      * @see Cell#fight(Cellular)
      */
     private void fightCell(Cellular firstCell, Cellular secondCell) {
-
-        while (!isCellDead(firstCell) && !isCellDead(secondCell)) {
+        while (firstCell.isAlive() && secondCell.isAlive()) {
             firstCell.fight(secondCell);
-            if (!isCellDead(secondCell)) {
+            if (secondCell.isAlive()) {
                 //the second cell fights back
                 secondCell.fight(firstCell);
             }
@@ -207,16 +206,6 @@ public class Cluster extends IdentifiableImpl implements Clustercentric {
      */
     private void removeCell(Cellular cell) {
         cells.get(cell.getPositionRow()).remove(cell.getPositionCol());
-    }
-
-    /**
-     * See if a cell is dead by checking its health
-     *
-     * @param cell the cell that will be checked
-     * @return true if its health is non-positive
-     */
-    private boolean isCellDead(Cellular cell) {
-        return cell.getHealth() <= 0;
     }
 
     /**
@@ -246,7 +235,7 @@ public class Cluster extends IdentifiableImpl implements Clustercentric {
 
         return cell;
     }
-    
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();

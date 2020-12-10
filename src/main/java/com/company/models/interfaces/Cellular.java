@@ -32,6 +32,23 @@ public interface Cellular extends Identifiable {
     int getHealth();
 
     /**
+     * Turn on the fight mode of the cell
+     */
+    void initiateFighting();
+
+    /**
+     * Return a condition to find out whether the cell is alive
+     *
+     * @return the verification of the condition
+     */
+    boolean isAlive();
+
+    /**
+     * After a fight take damage
+     */
+    void receiveEnergyDamage(int energy);
+
+    /**
      * The current cell fights another cell and depending on it's kind it can either be assimilated or just damaged
      *
      * @param cell the cell which the current cell will fight against

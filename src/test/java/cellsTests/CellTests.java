@@ -8,6 +8,7 @@ import com.company.messages.ExceptionMessages;
 import com.company.models.Cell;
 import com.company.models.cells.BloodCell;
 import com.company.models.cells.RedBloodCell;
+import com.company.models.interfaces.Cellular;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -53,6 +54,10 @@ public class CellTests {
         expectedEx.expectMessage(new InvalidHealthException().getMessage());
 
         cell = new Cell(ID, TOO_LOW_HEALTH, CORRECT_DIMENSION, CORRECT_DIMENSION) {
+            @Override
+            protected int attackOtherCell(Cellular other) {
+                return 0;
+            }
         };
     }
 
@@ -62,6 +67,10 @@ public class CellTests {
         expectedEx.expectMessage(new InvalidHealthException().getMessage());
 
         cell = new Cell(ID, TOO_HIGH_HEALTH, CORRECT_DIMENSION, CORRECT_DIMENSION) {
+            @Override
+            protected int attackOtherCell(Cellular other) {
+                return 0;
+            }
         };
     }
 
@@ -71,6 +80,10 @@ public class CellTests {
         expectedEx.expectMessage(new InvalidRowException().getMessage());
 
         cell = new Cell(ID, CORRECT_HEALTH, TOO_LOW_DIMENSION, CORRECT_DIMENSION) {
+            @Override
+            protected int attackOtherCell(Cellular other) {
+                return 0;
+            }
         };
     }
 
@@ -80,6 +93,10 @@ public class CellTests {
         expectedEx.expectMessage(new InvalidRowException().getMessage());
 
         cell = new Cell(ID, CORRECT_HEALTH, TOO_HIGH_DIMENSION, CORRECT_DIMENSION) {
+            @Override
+            protected int attackOtherCell(Cellular other) {
+                return 0;
+            }
         };
     }
 
@@ -89,6 +106,10 @@ public class CellTests {
         expectedEx.expectMessage(new InvalidColumnException().getMessage());
 
         cell = new Cell(ID, CORRECT_HEALTH, CORRECT_DIMENSION, TOO_LOW_DIMENSION) {
+            @Override
+            protected int attackOtherCell(Cellular other) {
+                return 0;
+            }
         };
     }
 
@@ -98,6 +119,10 @@ public class CellTests {
         expectedEx.expectMessage(new InvalidColumnException().getMessage());
 
         cell = new Cell(ID, CORRECT_HEALTH, CORRECT_DIMENSION, TOO_HIGH_DIMENSION) {
+            @Override
+            protected int attackOtherCell(Cellular other) {
+                return 0;
+            }
         };
     }
 
