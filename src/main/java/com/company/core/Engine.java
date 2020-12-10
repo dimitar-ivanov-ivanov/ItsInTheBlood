@@ -1,6 +1,8 @@
 package com.company.core;
 
 import com.company.common.ExceptionWrapper;
+import com.company.core.InputOutput.interfaces.Reader;
+import com.company.core.InputOutput.interfaces.Writer;
 import com.company.exceptions.InputFailureException;
 import com.company.core.commands.interfaces.CommandInterpreter;
 import com.company.core.commands.interfaces.Executable;
@@ -23,12 +25,24 @@ public class Engine implements Runnable {
     private CommandInterpreter commandInterpreter;
 
     /**
+     * console writer which outputs the result
+     */
+    private Writer consoleWriter;
+
+    /**
+     * console reader which takes the incoming data
+     */
+    private Reader consoleReader;
+
+    /**
      * Instantiates a new Engine.
      *
      * @param commandInterpreter the command interpreter
      */
-    public Engine(CommandInterpreter commandInterpreter) {
+    public Engine(CommandInterpreter commandInterpreter, Writer consoleWriter, Reader consoleReader) {
         this.commandInterpreter = commandInterpreter;
+        this.consoleWriter = consoleWriter;
+        this.consoleReader = consoleReader;
     }
 
     /**
@@ -38,11 +52,9 @@ public class Engine implements Runnable {
      */
     @Override
     public void run() {
-        Scanner scanner = new Scanner(System.in);
-
         while (true) {
             try {
-                String input = scanner.nextLine();
+                String input = consoleReader.readLine();
 
                 if (input.equals(OutputMessages.END_INPUT)) {
                     break;
@@ -54,9 +66,9 @@ public class Engine implements Runnable {
                 Executable exe = commandInterpreter.interpretCommand(data, commandName);
                 ExceptionWrapper wrapper = new ExceptionWrapper(exe);
                 String result = wrapper.runExecutable();
-                System.out.println(result);
+                consoleWriter.write(result);
             } catch (InputFailureException failure) {
-                System.out.println(failure.getMessage());
+                consoleWriter.write(failure.getMessage());
             }
         }
     }

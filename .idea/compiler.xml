@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
-      <module name="It's In The Blood" target="1.8" />
+      <module name="It's In The Blood" target="9" />
     </bytecodeTargetLevel>
   </component>
 </project>

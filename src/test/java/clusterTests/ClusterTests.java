@@ -1,10 +1,12 @@
+package clusterTests;
+
 import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidColumnException;
 import com.company.exceptions.fieldsExceptions.dimensionExceptions.InvalidRowException;
 import com.company.models.Cluster;
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
-import org.testng.annotations.Test;
 
 public class ClusterTests {
 

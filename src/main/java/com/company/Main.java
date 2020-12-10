@@ -1,7 +1,12 @@
 package com.company;
 
 import com.company.core.Engine;
+import com.company.core.InputOutput.ConsoleReader;
+import com.company.core.InputOutput.ConsoleWriter;
+import com.company.core.InputOutput.interfaces.Reader;
+import com.company.core.InputOutput.interfaces.Writer;
 import com.company.core.commands.CommandInterpreterImpl;
+import com.company.core.commands.interfaces.CommandInterpreter;
 import com.company.core.factories.CellFactory;
 import com.company.core.factories.ClusterFactory;
 import com.company.core.factories.OrganismFactory;
@@ -9,10 +14,8 @@ import com.company.core.factories.interfaces.ClustercentricFactory;
 import com.company.core.factories.interfaces.OrganicFactory;
 import com.company.data.HealthManagerImpl;
 import com.company.data.interfaces.HealthManager;
-import com.company.models.microbes.Fungi;
-import com.company.models.microbes.Virus;
 
-import java.lang.Runnable;
+import java.util.Scanner;
 
 public class Main {
 
@@ -27,9 +30,13 @@ public class Main {
         ClustercentricFactory clusterableFactory = new ClusterFactory();
         OrganicFactory organicFactory = new OrganismFactory();
 
-        CommandInterpreterImpl interpreter = new CommandInterpreterImpl(manager, cellFactory, clusterableFactory, organicFactory);
+        CommandInterpreter interpreter = new CommandInterpreterImpl(manager, cellFactory, clusterableFactory, organicFactory);
 
-        Runnable engine = new Engine(interpreter);
+        Scanner scanner = new Scanner(System.in);
+        Writer writer = new ConsoleWriter();
+        Reader reader = new ConsoleReader(scanner);
+
+        Runnable engine = new Engine(interpreter, writer, reader);
         engine.run();
     }
 }
